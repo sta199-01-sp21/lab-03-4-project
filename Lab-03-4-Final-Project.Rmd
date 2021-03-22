@@ -1,0 +1,39 @@
+---
+title: "Project Proposal"
+author: "Bea De Oliveira, Jess Chen, Brendan Kelleher, Etan MacLean"
+date: "3-22-2021"
+output: pdf_document
+---
+
+**Dataset on CDC Disease**
+```{r disease-data, warning = FALSE, message = FALSE}
+library(tidyverse)
+disease <- read.csv("https://chronicdata.cdc.gov/api/views/g4ie-h725/rows.csv?accessType=DOWNLOAD&bom=true&format=true")
+glimpse(disease)
+```
+
+**Dataset on Fight Songs**
+```{r fight-data, warning = FALSE, message = FALSE}
+fight_songs <- read.csv("fight-songs.csv")
+glimpse(fight_songs)
+```
+
+**Dataset on Political Disease**
+```{r political-data, warning = FALSE, message = FALSE}
+political_data1 <- 
+  read.csv("Social media statistics for members of the 116th Congress.csv")
+political_data2 <- 
+  read.csv(
+    "Top 10 events associated with increased engagement in each party.csv")
+political_data3 <- 
+  read.csv("Top 100 terms associated with engagement boosts in each party.csv")
+political_data4 <- 
+  read.csv("Top 100 terms used most exclusively by members of each party.csv")
+
+glimpse(political_data1)
+glimpse(political_data2)
+glimpse(political_data3)
+glimpse(political_data4)
+```
+
+
