@@ -5,7 +5,35 @@ date: "3-22-2021"
 output: pdf_document
 ---
 
+make sure the printing of code chunks is turned off with the option echo = FALSE.
+Your final written report should not exceed five pages inclusive of all tables and figures
+
 **Dataset on Fight Songs**
+
+## Introduction
+
+The introduction provides motivation and context for your research. Describe your topic (citing sources) and provide a concise, clear statement of your research question and hypotheses.
+
+Then identify the source of the data, when and how it was collected, the cases, a general description of relevant variables.
+
+## Methodology
+
+The methodology section should include visualizations and summary statistics relevant to your research question. You should also justify the choice of statistical method(s) used to answer your research question.
+
+## Results
+
+Showcase how you arrived at answers to your research question using the techniques we have learned in class (and beyond, if you’re feeling adventurous).
+
+Provide only the main results from your analysis. The goal is not to do an exhaustive data analysis (calculate every possible statistic and perform every possible procedure for all variables). Rather, you should demonstrate that you are proficient at asking meaningful questions and answering them using data, that you are skilled in interpreting and presenting results, and that you can accomplish these tasks using R. More is not better.
+
+## Discussion
+
+This section is a conclusion and discussion. This will require a summary of what you have learned about your research question along with statistical arguments supporting your conclusions. You should critique your own methods and provide suggestions for improving your analysis and future work. Issues pertaining to the reliability and validity of your data and the appropriateness of the statistical analyses should also be discussed. Also include a brief paragraph on what you would do differently if you were able to start over with the project.
+
+
+
+
+
 
 Research Topic: The data set works to analyze Collegiate fight songs over time and the elements contained in each song (distance, violence, words, etc).
 
