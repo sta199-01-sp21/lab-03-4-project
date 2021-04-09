@@ -12,6 +12,7 @@ library(tidyverse)
 
 make sure the printing of code chunks is turned off with the option echo = FALSE.
 Your final written report should not exceed five pages inclusive of all tables and figures
+overwrite notre dame data to be in ACC
 
 data descriptors: https://github.com/fivethirtyeight/data/tree/master/fight-songs/
 
@@ -25,8 +26,32 @@ Random observations:
 - BPM and duration as continuous variables
 - measures of aggressiveness of time (rah, BPM, number_fights)
 
-Overall question: __ over time
+Overall question: intensity over time
+Look at BPM, trope_count (investigate distributions of constituent variables such as rah),
+Substudy: are intense songs longer in duration?
 Graphs could look at individual distributions of response variables
+
+boxplots
+histograms
+scatterplots by color
+pie charts
+linear models
+facet grids
+bar charts / filled bar charts by color
+
+1. ETAN: Boxplot with trope_count as one color and its sub-variables (rah, men, spelling, nonsense) as adjacent boxplots
+
+2. Something w BPM
+
+3. LM of time vs. BPM and LM of time vs. trope_count - which predicts better? (use adj.r.squared)
+
+4. Make LM of time vs. intensity (mutate new variable)
+
+Look at how the LM works in different areas (does time predict trope_count or BPM better)
+
+Mutate new variable, intensity, which combines BPM and trope_count
+- Use boxplots to find factor to adjust trope_count to match BPM range; then combine
+Final model: linear regression w time as explanatory and intensity as response
 
 ## Introduction
 
@@ -55,7 +80,7 @@ This section is a conclusion and discussion. This will require a summary of what
 
 Research Topic: The data set works to analyze Collegiate fight songs over time and the elements contained in each song (distance, violence, words, etc).
 
-Research Question: How does the duration and aggression of fight songs change over time?
+Research Question: How does the intensity (tropes, BPM) of fight songs change over time? How does this change based on geography?
 
 Hypothesis: Fight songs have gotten shorter and more aggressive over time.
 
