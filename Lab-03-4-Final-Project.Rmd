@@ -5,10 +5,28 @@ date: "3-22-2021"
 output: pdf_document
 ---
 
+```{r load}
+library(tidyverse)
+```
+
+
 make sure the printing of code chunks is turned off with the option echo = FALSE.
 Your final written report should not exceed five pages inclusive of all tables and figures
 
+data descriptors: https://github.com/fivethirtyeight/data/tree/master/fight-songs/
+
 **Dataset on Fight Songs**
+
+Random observations:
+
+- Some fight songs are just named "___ fight song"
+- boxplots of eras fight songs were written in (faceted by decade)
+- does vocab change w student writer? does it correlate with if the song is official?
+- BPM and duration as continuous variables
+- measures of aggressiveness of time (rah, BPM, number_fights)
+
+Overall question: __ over time
+Graphs could look at individual distributions of response variables
 
 ## Introduction
 
