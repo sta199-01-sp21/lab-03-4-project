@@ -5,20 +5,6 @@ date: "3-22-2021"
 output: pdf_document
 ---
 
-**Dataset on CDC Disease**
-
-Research Topic: The CDC Database is a collection of diseases, including cancer, heart-disease, brain-disease, arthritis, etc. and the states and gender of those who contract the disease ranging from the early 2000s to the late 2010s. It also provides information on the rates of each disease.
-
-Research Question: What is the relationship between geographic location and cardiovascular disease?
-
-Hypothesis: Cardiovascular disease is more prevelent in areas of the Southeastern United States.
-
-```{r disease-data, warning = FALSE, message = FALSE}
-library(tidyverse)
-disease <- read.csv("https://chronicdata.cdc.gov/api/views/g4ie-h725/rows.csv?accessType=DOWNLOAD&bom=true&format=true")
-glimpse(disease)
-```
-
 **Dataset on Fight Songs**
 
 Research Topic: The data set works to analyze Collegiate fight songs over time and the elements contained in each song (distance, violence, words, etc).
@@ -31,31 +17,3 @@ Hypothesis: Fight songs have gotten shorter and more aggressive over time.
 fight_songs <- read.csv("fight-songs.csv")
 glimpse(fight_songs)
 ```
-
-**Dataset on Political Disease**
-
-Research Topic: The datasets below describe the social media usage of congress members. It shows what platforms congresspeople use, their political affiliation, interaction with the platforms, as well as the terms they use and the interaction they get on each post.
-
-Research Question: What keywords or group of keywords used by congresspeople in social media posts garner the greatest reaction?
-
-Hypothesis: Words relating to other nations garner the greatest reaction on social media?
-
-
-```{r political-data, warning = FALSE, message = FALSE}
-political_data1 <- 
-  read.csv("Social media statistics for members of the 116th Congress.csv")
-political_data2 <- 
-  read.csv(
-    "Top 10 events associated with increased engagement in each party.csv")
-political_data3 <- 
-  read.csv("Top 100 terms associated with engagement boosts in each party.csv")
-political_data4 <- 
-  read.csv("Top 100 terms used most exclusively by members of each party.csv")
-
-glimpse(political_data1)
-glimpse(political_data2)
-glimpse(political_data3)
-glimpse(political_data4)
-```
-
-
