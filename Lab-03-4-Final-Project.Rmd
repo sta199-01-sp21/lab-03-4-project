@@ -9,6 +9,10 @@ output: pdf_document
 library(tidyverse)
 ```
 
+```{r fight-data, warning = FALSE, message = FALSE}
+fight_songs <- read.csv("fight-songs.csv")
+glimpse(fight_songs)
+```
 
 make sure the printing of code chunks is turned off with the option echo = FALSE.
 Your final written report should not exceed five pages inclusive of all tables and figures
@@ -41,7 +45,22 @@ bar charts / filled bar charts by color
 
 1. ETAN: Boxplot with trope_count as one color and its sub-variables (rah, men, spelling, nonsense) as adjacent boxplots
 
+
 2. Something w BPM
+
+```{r}
+bpm_songs <- fight_songs %>%
+  group_by(year) %>%
+  summarize(avg_bpm = mean(bpm))
+bpm_songs %>% 
+  ggplot() +
+  scale_x_discrete(guide = guide_axis(n.dodge=4)) +
+  geom_col(mapping = aes(x = year, y = avg_bpm)) +
+  labs(title = "Relationship Between Year and Average Song BPM", 
+       x = "Year", y = "Average BPM") +
+  theme_bw()
+```
+
 
 3. LM of time vs. BPM and LM of time vs. trope_count - which predicts better? (use adj.r.squared)
 
@@ -84,7 +103,3 @@ Research Question: How does the intensity (tropes, BPM) of fight songs change ov
 
 Hypothesis: Fight songs have gotten shorter and more aggressive over time.
 
-```{r fight-data, warning = FALSE, message = FALSE}
-fight_songs <- read.csv("fight-songs.csv")
-glimpse(fight_songs)
-```
