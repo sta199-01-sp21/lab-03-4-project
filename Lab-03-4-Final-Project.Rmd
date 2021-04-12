@@ -9,8 +9,16 @@ output: pdf_document
 library(tidyverse)
 ```
 
+Updates:
+ - Changed Notre Dame's Conference to 'ACC'
+ - Removed unknown year entries and made 'year' a numeric value
+
 ```{r fight-data, warning = FALSE, message = FALSE}
 fight_songs <- read.csv("fight-songs.csv")
+fight_songs$conference[1] <- "ACC"
+fight_songs <- fight_songs %>%
+  filter(year != "Unknown") %>%
+  mutate(year = as.numeric(year))
 glimpse(fight_songs)
 ```
 
@@ -42,6 +50,43 @@ pie charts
 linear models
 facet grids
 bar charts / filled bar charts by color
+
+
+Overview of trope_count data in terms of time and region
+
+Time:
+```{r trope_count_over_time}
+ggplot(data = fight_songs, mapping = aes(x = year, y = trope_count)) + geom_point() + geom_smooth()
+```
+
+Looking at Trope Count and BPM over Time:
+```{r trope_bpm_over_time}
+mod_fight_songs <- fight_songs %>%
+  group_by(year) %>%
+  summarize(avg_trope_count = mean(trope_count),
+            avg_bpm = mean(bpm))
+ggplot(data = mod_fight_songs, mapping = aes(x = year)) + geom_line(aes(y = avg_trope_count), color = "blue") + geom_line(aes(y = avg_bpm / 30), color = "red") + scale_y_continuous(name = "Average Trope Count (Blue)", sec.axis = sec_axis(trans=~.*22.5, name = "Average BPM (Red)")) + labs(x = "Year")
+```
+
+Interpretation: there seems to be no linear correlation over time for both average trope count and average BPM.
+
+
+Region:
+```{r trope_count_and_region}
+trope_count_by_conf <- fight_songs %>%
+  group_by(conference) %>%
+  summarize(avg_trope_count = mean(trope_count))
+ggplot(data = trope_count_by_conf, mapping = aes(x = conference, y = avg_trope_count)) + geom_col()
+```
+
+Region over Time:
+```{r}
+ggplot(data = fight_songs, mapping = aes(x = year, y = trope_count)) + geom_point() + geom_smooth() + facet_wrap(.~conference)
+```
+
+
+Linearity assumptions?
+
 
 1. ETAN: Boxplot with trope_count as one color and its sub-variables (rah, men, spelling, nonsense) as adjacent boxplots
 
