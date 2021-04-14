@@ -18,7 +18,7 @@ fight_songs <- read.csv("fight-songs.csv")
 fight_songs$conference[1] <- "ACC"
 fight_songs <- fight_songs %>%
   filter(year != "Unknown") %>%
-  mutate(year = as.numeric(year))
+  mutate(year = as.integer(year))
 glimpse(fight_songs)
 ```
 
@@ -93,19 +93,6 @@ Linearity assumptions?
 
 2. Something w BPM
 
-```{r}
-bpm_songs <- fight_songs %>%
-  group_by(year) %>%
-  summarize(avg_bpm = mean(bpm))
-bpm_songs %>% 
-  ggplot() +
-  scale_x_discrete(guide = guide_axis(n.dodge=4)) +
-  geom_col(mapping = aes(x = year, y = avg_bpm)) +
-  labs(title = "Relationship Between Year and Average Song BPM", 
-       x = "Year", y = "Average BPM") +
-  theme_bw()
-```
-
 
 3. LM of time vs. BPM and LM of time vs. trope_count - which predicts better? (use adj.r.squared)
 
@@ -126,6 +113,54 @@ Then identify the source of the data, when and how it was collected, the cases, 
 ## Methodology
 
 The methodology section should include visualizations and summary statistics relevant to your research question. You should also justify the choice of statistical method(s) used to answer your research question.
+
+Question: BPM changes over time
+
+Summary Statistics - single boxplot (median, range, IQR, etc)
+Use summary
+```{r}
+summary(fight_songs$bpm)
+ggplot(data = fight_songs, mapping = aes(x = bpm)) + geom_boxplot() + geom_histogram(bins = 10)
+```
+BPM over time observation (Etan's graph)
+
+```{r}
+bpm_songs <- fight_songs %>%
+  group_by(year) %>%
+  summarize(avg_bpm = mean(bpm))
+bpm_songs %>% 
+  ggplot() +
+  geom_line(mapping = aes(x = year, y = avg_bpm)) +
+  labs(title = "Relationship Between Year and Average Song BPM", 
+       x = "Year", y = "Average BPM") +
+  theme_bw()
+```
+
+Make a linear model predicting BPM (includes assumptions)
+
+DO ASSUMPTIONS
+
+```{r}
+mod <- lm(avg_bpm ~ year, data = bpm_songs)
+tidy(mod)
+```
+
+```{r}
+ggplot(data = bpm_songs, mapping = aes(x = year, y = avg_bpm)) + geom_point() + geom_smooth(method = "lm")
+```
+
+Bootstrap and make hypothesis test for slope != 0
+
+```{r}
+null_dist <- fight_songs %>%
+  specify(bpm ~ year) %>%
+  hypothesize(null = "point", med = 0) %>%
+  generate(reps = 10000, type = "bootstrap") %>%
+  calculate(stat = "correlation")
+```
+
+
+Analysis and conclusion
 
 ## Results
 
